@@ -34,7 +34,6 @@ python3.pkgs.buildPythonApplication rec {
     atomicwrites
     click
     click-log
-    click-repl
     humanize
     icalendar
     parsedatetime
@@ -72,6 +71,10 @@ python3.pkgs.buildPythonApplication rec {
 
   pythonImportsCheck = [
     "todoman"
+  ];
+
+  optional-dependencies.repl = with python3.pkgs; [
+    click-repl
   ];
 
   meta = {
