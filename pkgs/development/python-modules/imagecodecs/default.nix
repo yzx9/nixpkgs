@@ -32,14 +32,14 @@
 
 buildPythonPackage (finalAttrs: {
   pname = "imagecodecs";
-  version = "2026.10.10";
+  version = "2026.11.11";
   pyproject = true;
 
   src = fetchFromGitHub {
     owner = "cgohlke";
     repo = "imagecodecs";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-PGctU16wv0bisjJ8JwZxfUrIMzU9lR0A+pnvoBl2SY4=";
+    hash = "sha256-GvOVSbPANKHs7llLmWWUIKahnvw4Fy0LcMEwAu5HKk4=";
   };
 
   build-system = [
@@ -90,16 +90,6 @@ buildPythonPackage (finalAttrs: {
     # import from $out
     rm -r imagecodecs
   '';
-
-  disabledTests = [
-    # alpha channel not supported by codec
-    "jpeg8-rgba"
-    "jpeg8-uint8-rgba"
-    # lossless mode not supported by legacy JPEG codec
-    "test_imread_imwrite"
-    # we don't package liblzf
-    "test_lzf_exceptions"
-  ];
 
   pythonImportsCheck = [
     "imagecodecs"
